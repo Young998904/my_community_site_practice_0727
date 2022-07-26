@@ -14,5 +14,6 @@
 <ul>
     <% for (ArticleDto article : articles) { %>
     <%=article.getId()%> . <%=article.getTitle()%>
+    <br>
     <%}%>
 </ul>

@@ -18,4 +18,8 @@ public class ArticleController {
         rq.setAtrr("articles", articleDtos);
         rq.view("usr/article/list");
     }
+
+    public void showWrite(Rq rq) {
+        rq.view("usr/article/write");
+    }
 }
