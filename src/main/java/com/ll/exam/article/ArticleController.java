@@ -7,6 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ArticleController {
+    private AtricleService articleService;
+
+    public ArticleController () {
+        articleService = new AtricleService();
+    }
     public void showList (Rq rq) {
         // Dto -> 단순 데이터를 담는곳
         List<ArticleDto> articleDtos = new ArrayList<>();
@@ -27,7 +32,8 @@ public class ArticleController {
         String title = rq.getParam("title", "");
         String body = rq.getParam("body", "");
 
-        rq.appendBody("<div>title : %s</div>".formatted(title));
-        rq.appendBody("<div>body : %s</div>".formatted(body));
+        long id = articleService.write(title, body);
+
+        rq.appendBody("%d번 게시물이 생성되었습니다.".formatted(id));
     }
 }
