@@ -83,4 +83,29 @@ public class Rq {
         String[] bits = req.getRequestURI().split("/");
         return "/%s/%s/%s".formatted(bits[1], bits[2], bits[3]);
     }
+
+    public String getPathValueByIndex(int index, String defaultVaule) {
+        String[] bits = req.getRequestURI().split("/");
+
+        try {
+            return bits[4+index];
+        }
+        catch (ArrayIndexOutOfBoundsException e) {
+            return defaultVaule;
+        }
+    }
+
+    public long getPathLongValueByIndex(int index, long defaultVaule) {
+        String value = getPathValueByIndex(index, null);
+
+        if (value == null) {
+            return defaultVaule;
+        }
+        try {
+            return Long.parseLong(value);
+        }
+        catch (NumberFormatException e) {
+            return defaultVaule;
+        }
+    }
 }

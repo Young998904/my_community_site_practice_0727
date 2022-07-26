@@ -3,7 +3,6 @@ package com.ll.exam.article;
 import com.ll.exam.Rq;
 import com.ll.exam.article.dto.ArticleDto;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ArticleController {
@@ -34,9 +33,19 @@ public class ArticleController {
     }
 
     public void showDetail(Rq rq) {
-        long id = 1;
+        long id = rq.getPathLongValueByIndex(1, 0);
+
+        if (id == 0) {
+            rq.appendBody("번호를 입력해주세요.");
+            return;
+        }
 
         ArticleDto articleDto = articleService.findById(id);
+
+        if (articleDto == null) {
+            rq.appendBody("해당 글이 존재하지 않습니다.");
+            return;
+        }
 
         rq.setAtrr("article", articleDto);
         rq.view("usr/article/detail");
