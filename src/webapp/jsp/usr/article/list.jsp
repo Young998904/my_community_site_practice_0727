@@ -13,7 +13,6 @@
 
 <ul>
     <% for (ArticleDto article : articles) { %>
-    <%=article.getId()%> . <%=article.getTitle()%>
-    <br>
+    <li><%=article.getId()%> . <%=article.getTitle()%></li>
     <%}%>
 </ul>
