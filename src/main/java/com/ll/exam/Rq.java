@@ -1,6 +1,5 @@
 package com.ll.exam;
 
-import com.ll.exam.article.dto.ArticleDto;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -8,7 +7,6 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.util.List;
 
 public class Rq {
     private final HttpServletRequest req;
@@ -79,5 +77,10 @@ public class Rq {
 
     public String getMethod() {
         return req.getMethod();
+    }
+
+    public String getActionPath() {
+        String[] bits = req.getRequestURI().split("/");
+        return "/%s/%s/%s".formatted(bits[1], bits[2], bits[3]);
     }
 }

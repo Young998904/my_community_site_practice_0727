@@ -2,14 +2,10 @@ package com.ll.exam;
 
 import com.ll.exam.article.ArticleController;
 import com.ll.exam.member.MemberController;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import java.io.IOException;
-import java.lang.management.MemoryNotificationInfo;
 
 @WebServlet("/usr/*")
 public class DispatchServlet extends HttpServlet {
@@ -25,11 +21,11 @@ public class DispatchServlet extends HttpServlet {
 
         switch (rq.getMethod()) {
             case "GET":
-                switch (rq.getPath()) {
-                    case "/usr/article/list/free":
+                switch (rq.getActionPath()) {
+                    case "/usr/article/list":
                         articleController.showList(rq);
                         break;
-                    case "/usr/article/write/free":
+                    case "/usr/article/write":
                         articleController.showWrite(rq);
                         break;
                     case "/usr/member/login":
@@ -38,8 +34,8 @@ public class DispatchServlet extends HttpServlet {
                 }
                 break;
             case "POST":
-                switch (rq.getPath()) {
-                    case "/usr/article/write/free":
+                switch (rq.getActionPath()) {
+                    case "/usr/article/write":
                         articleController.doWrite(rq);
                         break;
                 }
