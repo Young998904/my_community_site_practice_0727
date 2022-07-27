@@ -34,4 +34,13 @@ public class ArticleRepository {
         }
         return null;
     }
+
+    public void delete(long id) {
+        for(ArticleDto articleDto : datum) {
+            if(articleDto.getId() == id) {
+                datum.remove(articleDto);
+                return;
+            }
+        }
+    }
 }
